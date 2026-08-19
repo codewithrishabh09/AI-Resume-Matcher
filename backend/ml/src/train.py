@@ -79,6 +79,21 @@ def generate_training_data():
         },
     ])
 
+def build_features(df, embedder=None):
+    """Build feature matrix from dataframe."""
+    import numpy as np
+    from app.ml.models.similarity import SimilarityModel
+
+    sim_model = SimilarityModel()
+    X, y = [], []
+
+    for i, row in df.iterrows():
+        print(f"   Processing sample {i+1}/{len(df)}...")
+        vec = sim_model.feature_vector(row['resume'], row['job'])
+        X.append(vec[0])
+        y.append(row['label'])
+
+    return np.array(X), np.array(y)
 
 def train():
     print("=" * 50)

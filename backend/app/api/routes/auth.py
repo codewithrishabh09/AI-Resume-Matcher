@@ -1,6 +1,8 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
+
 from app.core.database import get_db
+from app.core.rate_limiter import limiter
 from app.api.dependencies import get_current_user
 from app.schemas.auth import RegisterRequest, LoginRequest, TokenResponse
 from app.schemas.user import UserOut
@@ -9,13 +11,26 @@ from app.models.user import User
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
+
 @router.post("/register", response_model=TokenResponse, status_code=201)
-def register(data: RegisterRequest, db: Session = Depends(get_db)):
+@limiter.limit("5/minute")           # ← max 5 registers per minute
+def register(
+    request: Request,
+    data: RegisterRequest,
+    db: Session = Depends(get_db)
+):
     return register_user(data, db)
 
+
 @router.post("/login", response_model=TokenResponse)
-def login(data: LoginRequest, db: Session = Depends(get_db)):
+@limiter.limit("10/minute")          # ← max 10 logins per minute
+def login(
+    request: Request,
+    data: LoginRequest,
+    db: Session = Depends(get_db)
+):
     return login_user(data, db)
+
 
 @router.get("/me", response_model=UserOut)
 def me(current_user: User = Depends(get_current_user)):
