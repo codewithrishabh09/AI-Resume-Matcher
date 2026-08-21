@@ -68,6 +68,21 @@ def upload_resume(
     db.commit()
     db.refresh(resume)
 
+    try:
+        from app.workers.tasks import (
+            parse_resume_task,
+            batch_match_task
+        )
+
+        # Parse resume in background
+        parse_resume_task.delay(resume.id, file_path)
+        # After parsing, batchh match (chained)
+        # batch_match_task will run after parse_resume_task completes
+
+    except Exception as e:
+        # Dont fail upload if celery unavailable
+        print(f"Celery unavailable: {e}")
+
     return resume
 
 def get_resume(resume_id: str, current_user: User, db: Session) -> Resume:
