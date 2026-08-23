@@ -16,7 +16,7 @@ router = APIRouter(prefix="/match", tags=["Matching"])
 
 
 @router.post("/{resume_id}/{job_id}")
-@limiter.limit("30/minute")
+@limiter.limit("20/minute")
 def match_resume_to_job(
     request: Request,
     resume_id: str,

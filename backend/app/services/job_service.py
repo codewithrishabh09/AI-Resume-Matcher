@@ -79,7 +79,26 @@ def update_job(
 def delete_job(job_id: str, current_user: User, db: Session) -> dict:
     job = get_job_by_id(job_id, db)
     if job.employer_id != current_user.id and current_user.role != "admin":
-        raise HTTPException(status_code=403, detail="Access denied")
+        raise HTTPException(
+            status_code=403,
+            detail="Access denied. Only employer can delete their jobs."
+        )
+
+    from app.models.analysis import Analysis
+    from app.models.application import Application
+
+    # Step 1 — Delete analyses first
+    db.query(Analysis).filter(
+        Analysis.job_id == job_id
+    ).delete(synchronize_session=False)
+
+    # Step 2 — Delete applications
+    db.query(Application).filter(
+        Application.job_id == job_id
+    ).delete(synchronize_session=False)
+
+    # Step 3 — Now safe to delete job
     db.delete(job)
     db.commit()
+
     return {"message": "Job deleted successfully"}
