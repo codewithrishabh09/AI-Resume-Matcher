@@ -7,6 +7,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 30000,  // 30 second timeout for ML calls
 })
 
 // Request interceptor — attach token
@@ -21,7 +22,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
-// Response interceptor — handle 401
+// Response interceptor — handle errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
