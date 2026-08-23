@@ -7,11 +7,11 @@ import api from '../../api/axios'
 
 const STATUS_OPTIONS = ['pending', 'reviewed', 'shortlisted', 'rejected', 'hired']
 const STATUS_COLORS = {
-  pending: 'bg-gray-100 text-gray-700',
-  reviewed: 'bg-blue-100 text-blue-700',
-  shortlisted: 'bg-green-100 text-green-700',
-  rejected: 'bg-red-100 text-red-700',
-  hired: 'bg-indigo-100 text-indigo-700'
+  pending: 'bg-white/10 text-white/70 border-white/20',
+  reviewed: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+  shortlisted: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+  rejected: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+  hired: 'bg-violet-500/20 text-violet-300 border-violet-500/30'
 }
 
 export default function JobApplications() {
@@ -49,53 +49,53 @@ export default function JobApplications() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#08080C] text-white">
       <Navbar />
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Applications</h1>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mb-8">
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Job Applications</h1>
           {data && (
-            <p className="text-gray-500 mt-1">
-              {data.job_title} — {data.total_applications} applicants
+            <p className="text-white/50 text-sm mt-1">
+              <span className="text-violet-400 font-semibold">{data.job_title}</span> — {data.total_applications} candidates applied
             </p>
           )}
         </div>
 
         {loading ? (
-          <div className="text-center py-20 text-gray-400">Loading...</div>
+          <div className="text-center py-20 text-white/40">Loading applications...</div>
         ) : data?.applications?.length === 0 ? (
-          <div className="card text-center py-12">
-            <User className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-gray-500">No applications yet</p>
+          <div className="card text-center py-16 border-white/10">
+            <User className="h-12 w-12 text-white/20 mx-auto mb-3" />
+            <p className="text-white/50">No applications submitted yet for this position.</p>
           </div>
         ) : (
           <div className="space-y-4">
             {data?.applications?.map(app => (
-              <div key={app.application_id} className="card">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                      <User className="h-5 w-5 text-indigo-600" />
+              <div key={app.application_id} className="card glass-card-hover border-white/10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-violet-500/20 border border-violet-500/30 rounded-2xl flex items-center justify-center text-violet-400">
+                      <User className="h-6 w-6" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">Applicant ID: {app.user_id.slice(0, 8)}...</p>
-                      <p className="text-xs text-gray-500 flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {new Date(app.applied_at).toLocaleDateString()}
+                      <p className="text-base font-semibold text-white">Candidate ID: {app.user_id.slice(0, 8)}...</p>
+                      <p className="text-xs text-white/40 flex items-center gap-1.5 mt-1">
+                        <Clock className="h-3.5 w-3.5" />
+                        Applied {new Date(app.applied_at).toLocaleDateString()}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium capitalize ${STATUS_COLORS[app.status]}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${STATUS_COLORS[app.status]}`}>
                       {app.status}
                     </span>
                     <select
-                      className="text-xs border border-gray-300 rounded-lg px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      className="text-xs bg-[#08080C] text-white border border-white/20 rounded-xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-violet-500 cursor-pointer"
                       value={app.status}
                       onChange={(e) => updateStatus(app.application_id, e.target.value)}
                     >
                       {STATUS_OPTIONS.map(s => (
-                        <option key={s} value={s} className="capitalize">{s}</option>
+                        <option key={s} value={s} className="bg-[#08080C] text-white capitalize">{s}</option>
                       ))}
                     </select>
                   </div>

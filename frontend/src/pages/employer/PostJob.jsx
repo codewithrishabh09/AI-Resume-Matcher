@@ -48,22 +48,22 @@ export default function PostJob() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#08080C] text-white">
       <Navbar />
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Post a New Job</h1>
-          <p className="text-gray-500 mt-1">Fill in the details to attract the best candidates</p>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mb-8">
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Post a New Job</h1>
+          <p className="text-white/50 text-sm mt-1">Specify job role details and required skill set for ML matching</p>
         </div>
 
-        <div className="card">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="card-glow">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Job Title *</label>
+              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Job Title *</label>
               <input
                 type="text"
-                className="input-field"
-                placeholder="e.g. Senior Python Developer"
+                className="input-field py-3 bg-white/[0.04] text-white border-white/10"
+                placeholder="e.g. Senior Machine Learning Engineer"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 required
@@ -71,34 +71,34 @@ export default function PostJob() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Job Description *</label>
               <textarea
                 rows={5}
-                className="input-field resize-none"
-                placeholder="Describe the role, responsibilities, and requirements..."
+                className="input-field py-3 bg-white/[0.04] text-white border-white/10 resize-none leading-relaxed"
+                placeholder="Describe the role, responsibilities, culture, and key requirements..."
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 required
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Location</label>
                 <input
                   type="text"
-                  className="input-field"
-                  placeholder="Remote / City"
+                  className="input-field py-3 bg-white/[0.04] text-white border-white/10"
+                  placeholder="e.g. Remote / San Francisco, CA"
                   value={form.location}
                   onChange={(e) => setForm({ ...form, location: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Salary Range</label>
+                <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Salary Range</label>
                 <input
                   type="text"
-                  className="input-field"
-                  placeholder="e.g. 80k-100k"
+                  className="input-field py-3 bg-white/[0.04] text-white border-white/10"
+                  placeholder="e.g. $140,000 - $180,000"
                   value={form.salary_range}
                   onChange={(e) => setForm({ ...form, salary_range: e.target.value })}
                 />
@@ -107,25 +107,25 @@ export default function PostJob() {
 
             {/* Skills */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Required Skills *</label>
-              <div className="flex gap-2 mb-2">
+              <label className="block text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">Required Skills *</label>
+              <div className="flex gap-2 mb-3">
                 <input
                   type="text"
-                  className="input-field flex-1"
-                  placeholder="Type a skill and press Add"
+                  className="input-field flex-1 py-3 bg-white/[0.04] text-white border-white/10"
+                  placeholder="Type skill (e.g. python, pytorch) and press Enter"
                   value={skillInput}
                   onChange={(e) => setSkillInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addSkill())}
                 />
-                <button type="button" onClick={addSkill} className="btn-secondary px-4">Add</button>
+                <button type="button" onClick={addSkill} className="btn-secondary px-5 font-semibold">Add</button>
               </div>
               {form.required_skills.length > 0 && (
-                <div className="flex flex-wrap gap-2 p-3 bg-gray-50 rounded-lg">
+                <div className="flex flex-wrap gap-2 p-4 bg-white/[0.03] border border-white/10 rounded-xl">
                   {form.required_skills.map(skill => (
-                    <span key={skill} className="flex items-center gap-1 bg-indigo-100 text-indigo-700 text-xs px-2.5 py-1 rounded-full">
+                    <span key={skill} className="flex items-center gap-1.5 bg-violet-500/20 text-violet-300 border border-violet-500/30 text-xs font-semibold px-3 py-1.5 rounded-lg">
                       {skill}
-                      <button type="button" onClick={() => removeSkill(skill)}>
-                        <X className="h-3 w-3" />
+                      <button type="button" onClick={() => removeSkill(skill)} className="hover:text-white transition-colors">
+                        <X className="h-3.5 w-3.5" />
                       </button>
                     </span>
                   ))}
@@ -133,9 +133,9 @@ export default function PostJob() {
               )}
             </div>
 
-            <div className="flex gap-3 pt-2">
-              <button type="submit" className="btn-primary flex-1 py-2.5" disabled={loading}>
-                {loading ? 'Posting...' : 'Post Job'}
+            <div className="flex gap-3 pt-4">
+              <button type="submit" className="btn-primary flex-1 py-3 font-semibold shadow-violet-600/30" disabled={loading}>
+                {loading ? 'Publishing Position...' : 'Publish Job Listing'}
               </button>
               <button type="button" onClick={() => navigate('/employer')} className="btn-secondary px-6">
                 Cancel

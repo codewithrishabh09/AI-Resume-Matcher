@@ -3,68 +3,69 @@ import SkillBadge from './SkillBadge'
 export default function MatchScoreCard({ result }) {
   const score = result?.match_score || 0
 
-  const getScoreColor = (score) => {
-    if (score >= 75) return 'text-green-600'
-    if (score >= 50) return 'text-yellow-600'
-    return 'text-red-600'
+  const getScoreColor = (s) => {
+    if (s >= 75) return 'text-green-400'
+    if (s >= 50) return 'text-yellow-400'
+    return 'text-red-400'
   }
 
-  const getBarColor = (score) => {
-    if (score >= 75) return 'bg-green-500'
-    if (score >= 50) return 'bg-yellow-500'
-    return 'bg-red-500'
+  const getBarColor = (s) => {
+    if (s >= 75) return 'from-green-500 to-emerald-400'
+    if (s >= 50) return 'from-yellow-500 to-amber-400'
+    return 'from-red-500 to-rose-400'
+  }
+
+  const getGlow = (s) => {
+    if (s >= 75) return 'shadow-green-500/30'
+    if (s >= 50) return 'shadow-yellow-500/30'
+    return 'shadow-red-500/30'
   }
 
   return (
-    <div className="card">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">Match Analysis</h2>
-        <span className={`text-4xl font-bold ${getScoreColor(score)}`}>
+    <div className="card-glow space-y-6">
+
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-white">Match Analysis</h2>
+        <div className={`text-5xl font-black ${getScoreColor(score)}`}>
           {score}%
-        </span>
+        </div>
       </div>
 
       {/* Score bar */}
-      <div className="mb-6">
-        <div className="flex justify-between text-sm text-gray-600 mb-1">
-          <span>Match Score</span>
-          <span>{result?.recommendation}</span>
+      <div>
+        <div className="flex justify-between text-sm mb-2">
+          <span className="text-white/40">Match Score</span>
+          <span className="text-white/60 font-medium">{result?.recommendation}</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3">
+        <div className="w-full bg-white/5 rounded-full h-2.5">
           <div
-            className={`h-3 rounded-full transition-all duration-500 ${getBarColor(score)}`}
+            className={`h-2.5 rounded-full bg-gradient-to-r ${getBarColor(score)} shadow-lg ${getGlow(score)} transition-all duration-1000`}
             style={{ width: `${score}%` }}
           />
         </div>
       </div>
 
-      {/* Stats grid */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold text-indigo-600">
-            {result?.skill_match_percentage?.toFixed(0)}%
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-3">
+        {[
+          { label: 'Skill Match', value: `${result?.skill_match_percentage?.toFixed(0)}%` },
+          { label: 'Semantic', value: `${result?.semantic_similarity?.toFixed(0)}%` },
+          { label: 'Experience', value: `${result?.experience_years}yr` },
+        ].map(({ label, value }) => (
+          <div key={label} className="bg-white/5 rounded-xl p-3 text-center border border-white/5">
+            <div className="text-2xl font-bold gradient-text">{value}</div>
+            <div className="text-xs text-white/40 mt-1">{label}</div>
           </div>
-          <div className="text-xs text-gray-500 mt-1">Skill Match</div>
-        </div>
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold text-indigo-600">
-            {result?.semantic_similarity?.toFixed(0)}%
-          </div>
-          <div className="text-xs text-gray-500 mt-1">Semantic Match</div>
-        </div>
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold text-indigo-600">
-            {result?.experience_years}
-          </div>
-          <div className="text-xs text-gray-500 mt-1">Years Exp</div>
-        </div>
+        ))}
       </div>
 
       {/* Matching skills */}
       {result?.matching_skills?.length > 0 && (
-        <div className="mb-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
-            ✅ Matching Skills ({result.matching_skills.length})
+        <div>
+          <h3 className="text-sm font-medium text-white/60 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-green-400 rounded-full" />
+            Matching Skills ({result.matching_skills.length})
           </h3>
           <div className="flex flex-wrap gap-2">
             {result.matching_skills.map(skill => (
@@ -76,9 +77,10 @@ export default function MatchScoreCard({ result }) {
 
       {/* Missing skills */}
       {result?.missing_skills?.length > 0 && (
-        <div className="mb-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
-            ❌ Missing Skills ({result.missing_skills.length})
+        <div>
+          <h3 className="text-sm font-medium text-white/60 mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-red-400 rounded-full" />
+            Missing Skills ({result.missing_skills.length})
           </h3>
           <div className="flex flex-wrap gap-2">
             {result.missing_skills.map(skill => (
@@ -91,14 +93,12 @@ export default function MatchScoreCard({ result }) {
       {/* Recommendations */}
       {result?.skill_recommendations?.length > 0 && (
         <div>
-          <h3 className="text-sm font-medium text-gray-700 mb-2">
-            📚 Learning Resources
-          </h3>
+          <h3 className="text-sm font-medium text-white/60 mb-2">📚 Learning Resources</h3>
           <div className="space-y-2">
             {result.skill_recommendations.map(rec => (
-              <div key={rec.skill} className="text-sm p-2 bg-blue-50 rounded-lg">
-                <span className="font-medium text-blue-700">{rec.skill}:</span>
-                <span className="text-blue-600 ml-1">{rec.resource}</span>
+              <div key={rec.skill} className="text-sm p-3 bg-violet-500/10 rounded-xl border border-violet-500/20">
+                <span className="font-medium text-violet-400">{rec.skill}:</span>
+                <span className="text-white/50 ml-1">{rec.resource}</span>
               </div>
             ))}
           </div>
@@ -107,8 +107,8 @@ export default function MatchScoreCard({ result }) {
 
       {/* Summary */}
       {result?.summary && (
-        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600">{result.summary}</p>
+        <div className="p-3 bg-white/5 rounded-xl border border-white/5">
+          <p className="text-sm text-white/40">{result.summary}</p>
         </div>
       )}
     </div>

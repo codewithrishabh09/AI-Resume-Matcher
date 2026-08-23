@@ -26,22 +26,22 @@ export default function MatchResult() {
   }, [resumeId, jobId])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#08080C] text-white">
       <Navbar />
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6 text-sm"
+          className="flex items-center gap-2 text-white/50 hover:text-white mb-8 text-sm font-medium transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to job
+          Back to job details
         </button>
 
         {loading ? (
-          <div className="card text-center py-16">
-            <div className="animate-spin h-10 w-10 border-4 border-indigo-600 border-t-transparent rounded-full mx-auto mb-4" />
-            <p className="text-gray-500">Analyzing your resume...</p>
+          <div className="card text-center py-20 border-white/10">
+            <div className="animate-spin h-10 w-10 border-4 border-violet-500 border-t-transparent rounded-full mx-auto mb-4" />
+            <p className="text-white/60 font-medium">Computing AI-powered skill extraction and semantic job matching via vector embeddings...</p>
           </div>
         ) : (
           <MatchScoreCard result={result} />
