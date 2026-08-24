@@ -423,7 +423,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 **Rishabh** — AI Resume Matcher
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/YOUR_USERNAME)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/codewithrishabh09)
 
 ---
 
