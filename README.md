@@ -246,6 +246,32 @@ npm install
 npm run dev
 ```
 
+### Complete Setup Guide - Run All Services
+
+cd backend
+pkill -f uvicorn
+pkill -f celery
+
+### Start PostgreSQL
+
+sudo systemctl start postgresql
+
+### Start Redis
+
+sudo systemctl start redis
+
+### Start Celery worker
+
+celery -A app.workers.celery_app worker --loglevel=info &
+
+### Start FastAPI
+
+uvicorn app.main:app --reload &
+
+### Start frontend
+
+npm run dev
+
 ### 7. Open in Browser
 
 | Service | URL |
