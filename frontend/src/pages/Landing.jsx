@@ -267,7 +267,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <Logo size="sm" clickable={false} />
           <div className="text-white/40 text-xs font-medium text-center">
-            ResumeX © 2026 • AI-Powered Resume Matcher & Career Intelligence Engine
+            © 2026 ResumeX • AI-Powered Resume Matcher • Built from Commit to Production by Rishabh
           </div>
           <div className="text-white/30 text-xs flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-emerald-400" /> ResumeX Engine Active
