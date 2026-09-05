@@ -178,29 +178,6 @@ pip install -r requirements.txt
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
 ```
 
-### 3. Configure Environment
-
-```bash
-# Copy example env
-cp .env.example .env
-
-# Edit .env with your values
-nano .env
-```
-
-```dotenv
-APP_NAME=AI Resume Matcher
-APP_VERSION=1.0.0
-DEBUG=True
-DATABASE_URL=postgresql://user:password@localhost:5432/resumematcher
-SECRET_KEY=your-super-secret-key
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-REDIS_URL=redis://localhost:6379/0
-MAX_FILE_SIZE_MB=10
-UPLOAD_DIR=./uploads
-```
-
 ### 4. Setup Database
 
 ```bash
