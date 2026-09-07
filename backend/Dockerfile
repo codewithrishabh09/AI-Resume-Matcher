@@ -1,23 +1,21 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
+# Upgrade pip, setuptools, wheel first
+RUN pip install --upgrade pip setuptools wheel
 
+# Copy requirements
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
+# Install dependencies with --no-build-isolation
+RUN pip install --no-build-isolation -r requirements.txt
 
+# Copy app
 COPY . .
 
-RUN mkdir -p uploads
+# Create models directory
+RUN mkdir -p models
 
-ENV PYTHONPATH=/app
-
-EXPOSE 8000
-
+# Run app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
