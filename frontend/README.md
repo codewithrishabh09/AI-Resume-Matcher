@@ -372,7 +372,7 @@ curl -X POST http://localhost:8000/api/matching/match \
 ```
 
 ### Get Top Jobs for Resume
-
+i
 ```bash
 curl http://localhost:8000/api/matching/top-jobs/{resume_id} \
   -H "Authorization: Bearer YOUR_TOKEN"
@@ -399,7 +399,6 @@ Visit http://localhost:8000/docs for Swagger UI with all endpoints.
 
 ## 📁 Project Structure
 
-```
 AI-Resume-Matcher/
 ├── backend/                    # FastAPI Backend
 │   ├── app/
@@ -455,7 +454,6 @@ AI-Resume-Matcher/
 ├── docker-compose.yml          # Docker Compose Config
 ├── README.md                   # This file
 └── .gitignore
-```
 
 ---
 
@@ -463,7 +461,6 @@ AI-Resume-Matcher/
 
 ### Backend `.env`
 
-```
 DATABASE_URL=postgresql://resumeadmin:admin123@localhost:5432/resumematcher
 REDIS_URL=redis://localhost:6379/0
 SECRET_KEY=your-secret-key-change-in-production
@@ -471,15 +468,11 @@ ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 DEBUG=False
 CORS_ORIGINS=["http://localhost:3000", "https://vercel-app.vercel.app"]
-```
 
 ### Frontend `.env.local`
 
-```
 REACT_APP_API_URL=http://localhost:8000
 VITE_API_URL=http://localhost:8000
-```
-
 ---
 
 ## 🚢 Deployment
