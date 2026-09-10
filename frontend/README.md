@@ -1,662 +1,651 @@
-# 🎯 AI Resume Matcher
+# 🤖 AI Resume Matcher
 
-An intelligent resume matching application that uses Machine Learning to match resumes with job descriptions based on multiple factors including skills, experience, education, technologies, and certifications.
+> Intelligent resume-to-job matching using machine learning and semantic analysis. Match candidates with jobs based on skills, experience, education, and more.
 
-**Live Demo:** https://your-vercel-app.vercel.app (Frontend)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+![React](https://img.shields.io/badge/React-18+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)
 
 ---
 
 ## ✨ Features
 
-- ✅ **AI-Powered Matching** - ML model scores resume-job compatibility (0-100%)
-- ✅ **Multi-Factor Analysis** - Skills (35%), Experience (25%), Education (15%), Tech (15%), Certs (5%), Titles (5%)
-- ✅ **Skill Gap Analysis** - Shows missing skills and recommendations
-- ✅ **Semantic Similarity** - Text-based job description matching using TF-IDF
-- ✅ **Batch Matching** - Match multiple resumes against a job
-- ✅ **Top Recommendations** - Find best job matches for a resume
-- ✅ **User Authentication** - JWT-based auth with role-based access
-- ✅ **Resume Upload** - PDF/TXT resume parsing and feature extraction
-- ✅ **Real-time Predictions** - Instant matching scores with confidence levels
-- ✅ **Caching** - Redis cache for frequently accessed data
-- ✅ **Rate Limiting** - API rate limiting to prevent abuse
+### 🎯 Core Matching
+- **Multi-Factor Matching** - Not just skills! Matches based on:
+  - Skills (35% weight)
+  - Years of Experience (25% weight)
+  - Education (15% weight)
+  - Technologies (15% weight)
+  - Certifications (5% weight)
+  - Job Titles (5% weight)
+
+### 🤖 Machine Learning
+- **Trained ML Models** - RandomForest & GradientBoosting classifiers
+- **Feature Extraction** - Intelligent parsing of resumes and job descriptions
+- **Confidence Scoring** - 0-100% match score with confidence metrics
+- **Semantic Analysis** - TF-IDF text similarity between resume and job
+
+### 📊 Advanced Features
+- **Skill Gap Analysis** - Shows missing and extra skills
+- **Batch Matching** - Match multiple resumes against one job
+- **Top Job Recommendations** - Find best matching jobs for a resume
+- **Resume Ranking** - Rank resumes by match score for employers
+
+### 🔐 Security & Scale
+- **JWT Authentication** - Secure token-based auth
+- **Rate Limiting** - Prevent API abuse
+- **Caching** - Redis for fast responses
+- **Database** - PostgreSQL for persistent storage
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        Frontend (React)                      │
-│                   https://vercel.app                         │
-│                   (Runs on localhost:3000)                   │
-└────────────────────────┬────────────────────────────────────┘
-                         │ HTTP/REST API
-                         ↓
-┌─────────────────────────────────────────────────────────────┐
-│                    Backend (FastAPI)                         │
-│              https://render.onrender.com                     │
-│              (Runs on localhost:8000)                        │
-│                                                              │
-│  ┌──────────────────┐  ┌──────────────────┐                │
-│  │   ML Pipeline    │  │  API Routes      │                │
-│  │  - Inference     │  │  - /matching     │                │
-│  │  - Prediction    │  │  - /resumes      │                │
-│  │  - Training      │  │  - /jobs         │                │
-│  └──────────────────┘  └──────────────────┘                │
-└────┬─────────────────────────────────────────────┬──────────┘
-     │                                             │
-     ↓                                             ↓
-┌──────────────────┐                    ┌──────────────────────┐
-│  PostgreSQL DB   │                    │    Redis Cache       │
-│  localhost:5432  │                    │  localhost:6379      │
-│                  │                    │                      │
-│ • Users          │                    │ • Session tokens     │
-│ • Resumes        │                    │ • Cached results     │
-│ • Jobs           │                    │ • Rate limits        │
-│ • Analyses       │                    │                      │
-└──────────────────┘                    └──────────────────────┘
+┌─────────────────────────────────────────┐
+│         Frontend (React/Vite)           │
+│       https://vercel-deployed.com       │
+└──────────────────┬──────────────────────┘
+                   │ API Calls
+                   ↓
+┌─────────────────────────────────────────┐
+│       Backend (FastAPI) - Port 8000     │
+│   • Resume Matching API                 │
+│   • User Authentication                 │
+│   • ML Model Inference                  │
+│   • Job & Resume Management             │
+└──────┬───────────────┬──────────────────┘
+       │               │
+       ↓               ↓
+┌─────────────┐  ┌──────────────┐
+│ PostgreSQL  │  │ Redis Cache  │
+│  Port 5432  │  │  Port 6379   │
+└─────────────┘  └──────────────┘
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## 📋 Tech Stack
 
-### **Frontend**
-- React 18 / Vite
-- TypeScript
-- Tailwind CSS
-- Axios for API calls
-- Deployed on Vercel
+### Backend
+- **Framework**: FastAPI 0.104.1
+- **Database**: PostgreSQL 15
+- **Cache**: Redis 7
+- **ML**: scikit-learn, NumPy, Pandas
+- **Auth**: JWT, Python-Jose
+- **Server**: Uvicorn 0.24.0
 
-### **Backend**
-- FastAPI (Python)
-- SQLAlchemy ORM
-- Pydantic for validation
-- JWT for authentication
-- SlowAPI for rate limiting
-- Deployed on Render
+### Frontend
+- **Framework**: React 18 / Vite
+- **State**: Axios for API calls
+- **Styling**: Tailwind CSS
+- **Deployment**: Vercel
 
-### **ML/Data**
-- scikit-learn (RandomForest, GradientBoosting)
-- pandas & numpy for data processing
-- joblib for model persistence
-- TF-IDF for text similarity
-
-### **Database & Cache**
-- PostgreSQL 15
-- Redis 7
-- Both on Render or local Docker
-
-### **Infrastructure**
-- Docker & Docker Compose (local development)
-- Render (production deployment)
-- Vercel (frontend deployment)
-- GitHub (version control)
+### Deployment
+- **Backend**: Render.com or Railway.app
+- **Frontend**: Vercel
+- **Database**: Render PostgreSQL
+- **Cache**: Render Redis
 
 ---
 
-## 📋 Prerequisites
+## 🚀 Quick Start (Local Development)
 
-- **Docker & Docker Compose** (recommended)
-- **Node.js 18+** (for frontend)
-- **Python 3.11+** (for backend)
-- **Git**
-- **GitHub Account** (for deployment)
+### Prerequisites
 
----
-
-## 🚀 Quick Start (Docker - Recommended)
+- Docker & Docker Compose
+- Node.js 18+ (for frontend dev)
+- Python 3.11+ (optional, for local backend)
 
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/codewithrishabh09/AI-Resume-Matcher.git
+git clone https://github.com/codewithrisha bh09/AI-Resume-Matcher.git
 cd AI-Resume-Matcher
 ```
 
-### 2️⃣ Create `docker-compose.yml` at root
-
-```yaml
-version: '3.8'
-
-services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: resumeai-postgres
-    environment:
-      POSTGRES_USER: resumeadmin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: resumematcher
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - resumeai-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U resumeadmin"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  redis:
-    image: redis:7-alpine
-    container_name: resumeai-redis
-    ports:
-      - "6379:6379"
-    networks:
-      - resumeai-network
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: resumeai-backend
-    environment:
-      DATABASE_URL: postgresql://resumeadmin:admin123@postgres:5432/resumematcher
-      REDIS_URL: redis://redis:6379/0
-      SECRET_KEY: your-secret-key-here
-      DEBUG: "False"
-    ports:
-      - "8000:8000"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - resumeai-network
-    volumes:
-      - ./backend:/app
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: resumeai-frontend
-    environment:
-      REACT_APP_API_URL: http://localhost:8000
-      VITE_API_URL: http://localhost:8000
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    networks:
-      - resumeai-network
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-
-volumes:
-  postgres_data:
-
-networks:
-  resumeai-network:
-    driver: bridge
-```
-
-### 3️⃣ Start All Services
+### 2️⃣ Start All Services with Docker Compose
 
 ```bash
+# Start all services (PostgreSQL, Redis, Backend, Frontend)
 docker-compose up -d
-```
 
-### 4️⃣ Check Status
-
-```bash
+# Check status
 docker-compose ps
 
-# Should show:
-# resumeai-postgres   Up (healthy)
-# resumeai-redis      Up (healthy)
-# resumeai-backend    Up
-# resumeai-frontend   Up
+# View logs
+docker-compose logs -f backend
 ```
 
-### 5️⃣ Access Applications
-
-- **Frontend:** http://localhost:3000
-- **Backend API:** http://localhost:8000
-- **API Docs:** http://localhost:8000/docs
-- **Database:** postgres://resumeadmin:admin123@localhost:5432/resumematcher
-- **Redis:** redis://localhost:6379
-
----
-
-## 🏃 Manual Setup (Without Docker)
-
-### Backend Setup
+### 3️⃣ Test Services
 
 ```bash
-cd backend
-
-# Create virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env file
-cat > .env << 'EOF'
-DATABASE_URL=postgresql://resumeadmin:admin123@localhost:5432/resumematcher
-REDIS_URL=redis://localhost:6379/0
-SECRET_KEY=your-secret-key-here
-DEBUG=True
-EOF
-
-# Run migrations (if needed)
-# alembic upgrade head
-
-# Start backend
-uvicorn app.main:app --reload --port 8000
-```
-
-### Frontend Setup
-
-```bash
-cd frontend
-
-# Install dependencies
-npm install
-
-# Create .env.local
-cat > .env.local << 'EOF'
-REACT_APP_API_URL=http://localhost:8000
-VITE_API_URL=http://localhost:8000
-EOF
-
-# Start frontend
-npm start
-```
-
-### Database Setup
-
-```bash
-# Install PostgreSQL
-brew install postgresql@15  # macOS
-sudo apt install postgresql postgresql-contrib  # Linux
-
-# Start PostgreSQL
-brew services start postgresql@15  # macOS
-sudo systemctl start postgresql  # Linux
-
-# Create database and user
-createuser -P resumeadmin  # Password: admin123
-createdb -O resumeadmin resumematcher
-```
-
-### Redis Setup
-
-```bash
-# Install Redis
-brew install redis  # macOS
-sudo apt install redis-server  # Linux
-
-# Start Redis
-brew services start redis  # macOS
-sudo systemctl start redis-server  # Linux
-
-# Verify
-redis-cli ping  # Should return "PONG"
-```
-
----
-
-## 🤖 ML Model Training
-
-### Train the Model
-
-```bash
-cd backend
-
-# Train with sample data
-python app/ml/training/train.py
-
-# Output:
-# ✅ Model trained and saved to models/resume_matcher_rf.pkl
-# Accuracy: 0.85
-# Precision: 0.82
-# Recall: 0.88
-# F1: 0.85
-```
-
-### Test the Model
-
-```bash
-python app/ml/training/test_model.py
-```
-
-### Add More Training Data
-
-Edit `app/ml/training/training_data.py` to add more resume-job pairs for better accuracy.
-
----
-
-## 📡 API Documentation
-
-### Health Check
-
-```bash
+# Backend health check
 curl http://localhost:8000/health
+# Expected: {"status": "Healthy"}
 
-# Response:
-{"status": "Healthy"}
+# Frontend
+open http://localhost:3000
+
+# API Docs
+open http://localhost:8000/docs
 ```
 
-### Match Resume to Job
+### 4️⃣ Stop Services
 
 ```bash
-curl -X POST http://localhost:8000/api/matching/match \
-  -F "resume_file=@resume.pdf" \
-  -H "Authorization: Bearer YOUR_TOKEN"
+# Stop all containers
+docker-compose down
 
-# Response:
-{
-  "match_score": 87.5,
-  "recommendation": "HIGHLY RECOMMENDED",
-  "semantic_similarity": 78.2,
-  "skill_match_percentage": 90.0,
-  "matching_skills": ["python", "django", "postgresql"],
-  "missing_skills": ["kubernetes"],
-  "experience_years": 5,
-  "confidence": 0.92,
-  "summary": "HIGHLY RECOMMENDED — Skill match: 90.0%"
-}
+# Stop and remove volumes (delete data)
+docker-compose down -v
 ```
-
-### Get Top Jobs for Resume
-i
-```bash
-curl http://localhost:8000/api/matching/top-jobs/{resume_id} \
-  -H "Authorization: Bearer YOUR_TOKEN"
-
-# Response:
-[
-  {
-    "job_id": "job_123",
-    "job_title": "Senior Backend Engineer",
-    "match_score": 89.5,
-    "recommendation": "HIGHLY RECOMMENDED",
-    "matching_skills": ["python", "django"],
-    "missing_skills": ["kubernetes"]
-  },
-  ...
-]
-```
-
-### Interactive API Docs
-
-Visit http://localhost:8000/docs for Swagger UI with all endpoints.
 
 ---
 
 ## 📁 Project Structure
 
+```
 AI-Resume-Matcher/
-├── backend/                    # FastAPI Backend
+├── backend/                          # FastAPI Backend
 │   ├── app/
 │   │   ├── api/
-│   │   │   └── routes/
+│   │   │   └── routes/              # API endpoints
 │   │   │       ├── auth.py
 │   │   │       ├── resumes.py
 │   │   │       ├── jobs.py
 │   │   │       ├── matching.py
 │   │   │       └── users.py
 │   │   ├── core/
-│   │   │   ├── config.py
-│   │   │   ├── rate_limiter.py
-│   │   │   └── security.py
+│   │   │   ├── config.py            # Configuration
+│   │   │   ├── security.py          # JWT & Auth
+│   │   │   └── database.py          # DB Connection
 │   │   ├── ml/
-│   │   │   ├── models/
+│   │   │   ├── models/              # ML Models
 │   │   │   │   ├── resume_matcher_model.py
 │   │   │   │   └── similarity.py
-│   │   │   ├── inference/
+│   │   │   ├── inference/           # Model Inference
 │   │   │   │   ├── matcher.py
 │   │   │   │   └── predictor.py
-│   │   │   └── training/
-│   │   │       ├── training_data.py
-│   │   │       └── train.py
+│   │   │   ├── training/            # Training Pipeline
+│   │   │   │   ├── train.py
+│   │   │   │   └── training_data.py
+│   │   │   └── features/            # Feature Extraction
 │   │   ├── preprocessing/
-│   │   │   └── skill_extractor.py
+│   │   │   └── skill_extractor.py   # Extract skills & features
 │   │   ├── services/
 │   │   │   ├── matching_service.py
-│   │   │   └── skill_service.py
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   └── main.py
-│   ├── models/                 # Trained ML models
-│   │   └── resume_matcher_rf.pkl
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── .env
-│   └── build.sh
+│   │   │   ├── resume_service.py
+│   │   │   └── job_service.py
+│   │   ├── models/                  # Database Models (SQLAlchemy)
+│   │   ├── schemas/                 # Pydantic Schemas
+│   │   └── main.py                  # FastAPI App Entry
+│   ├── models/                       # Saved ML Models (.pkl)
+│   ├── data/                         # Training Data
+│   ├── uploads/                      # User Resume Uploads
+│   ├── requirements.txt              # Python Dependencies
+│   ├── Dockerfile                    # Docker Configuration
+│   └── .env                          # Environment Variables
 │
-├── frontend/                   # React Frontend
+├── frontend/                         # React/Vite Frontend
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── styles/
+│   │   ├── components/               # React Components
+│   │   ├── pages/                    # Page Components
+│   │   ├── services/                 # API Services
+│   │   ├── hooks/                    # Custom Hooks
+│   │   ├── context/                  # React Context
 │   │   └── App.jsx
-│   ├── public/
-│   ├── Dockerfile
 │   ├── package.json
-│   ├── .env.local
-│   └── vite.config.js
+│   ├── Dockerfile
+│   ├── vite.config.js
+│   └── .env                          # Frontend Config
 │
-├── docker-compose.yml          # Docker Compose Config
-├── README.md                   # This file
-└── .gitignore
+├── docker-compose.yml                # Docker Compose Config
+└── README.md                          # This File
+```
+
+
+## 📚 API Endpoints
+
+POST   /api/auth/register              # Register new user
+POST   /api/auth/login                 # Login
+POST   /api/auth/refresh               # Refresh token
+
+### Resumes
+
+GET    /api/resumes                    # List user resumes
+POST   /api/resumes/upload             # Upload resume
+GET    /api/resumes/{resume_id}        # Get resume details
+DELETE /api/resumes/{resume_id}        # Delete resume
+
+### Jobs
+
+GET    /api/jobs                       # List all jobs
+POST   /api/jobs                       # Create new job
+GET    /api/jobs/{job_id}              # Get job details
+PUT    /api/jobs/{job_id}              # Update job
+DELETE /api/jobs/{job_id}              # Delete job
+
+### Matching
+
+POST   /api/matching/match             # Match resume to job
+POST   /api/matching/match-batch       # Match multiple resumes
+GET    /api/matching/top-jobs/{resume_id}     # Get top jobs for resume
+GET    /api/matching/top-resumes/{job_id}     # Get top resumes for job
+
+### Health
+
+GET    /health                         # Health check
+GET    /                                # Root endpoint
+GET    /docs                            # Swagger API Docs
+GET    /redoc                           # ReDoc API Docs
+
+## 🤖 ML Model Training
+
+### Train Model Locally
+
+```bash
+cd backend
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Train model
+python app/ml/training/train.py
+```
+
+This creates:
+- `models/resume_matcher_rf.pkl` - Trained RandomForest model
+- `models/resume_matcher_rf_scaler.pkl` - Feature scaler
+
+### Expected Output
+
+```
+🚀 Training model...
+✅ Model trained and saved to models/resume_matcher_rf.pkl
+
+✅ Model Performance:
+   Accuracy:  0.8500
+   Precision: 0.8333
+   Recall:    0.8333
+   F1:        0.8333
+```
 
 ---
 
-## 🔐 Environment Variables
+## 📊 Matching Algorithm
 
-### Backend `.env`
+### Scoring System
 
-DATABASE_URL=postgresql://resumeadmin:admin123@localhost:5432/resumematcher
-REDIS_URL=redis://localhost:6379/0
-SECRET_KEY=your-secret-key-change-in-production
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-DEBUG=False
-CORS_ORIGINS=["http://localhost:3000", "https://vercel-app.vercel.app"]
+```
+Match Score = (Skill Match × 0.35) + 
+              (Experience Match × 0.25) + 
+              (Education Match × 0.15) + 
+              (Technology Match × 0.15) + 
+              (Certification Match × 0.05) + 
+              (Job Title Match × 0.05)
+```
 
-### Frontend `.env.local`
+### Interpretation
 
-REACT_APP_API_URL=http://localhost:8000
-VITE_API_URL=http://localhost:8000
+| Score | Interpretation |
+|-------|-----------------|
+| 85-100% | 🟢 Excellent Match |
+| 70-84% | 🟡 Good Match |
+| 50-69% | 🟠 Moderate Match |
+| < 50% | 🔴 Poor Match |
+
+### Example
+
+```json
+{
+  "match_score": 87.5,
+  "confidence": 0.92,
+  "semantic_similarity": 78.2,
+  "skill_match_percentage": 90.0,
+  "matching_skills": ["python", "django", "postgresql"],
+  "missing_skills": ["kubernetes"],
+  "experience_years": 5,
+  "recommendation": "HIGHLY RECOMMENDED",
+  "summary": "HIGHLY RECOMMENDED — Skill match: 90.0%, Confidence: 92.0%"
+}
+```
+
 ---
 
-## 🚢 Deployment
+## 🐳 Docker Commands
 
-### Deploy Backend to Render
+### Build & Run
+
+```bash
+# Build images
+docker-compose build
+
+# Start services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+
+# Remove everything (including data)
+docker-compose down -v
+```
+
+### Individual Services
+
+```bash
+# Start only backend
+docker-compose up -d backend
+
+# Start only database
+docker-compose up -d postgres
+
+# Restart service
+docker-compose restart backend
+
+# Execute command in container
+docker-compose exec backend python -m pytest
+```
+
+---
+
+## 🚀 Deployment
+
+### Deploy Backend to Render.com
 
 1. Push code to GitHub
 2. Go to https://dashboard.render.com
 3. Create new Web Service
 4. Connect GitHub repo
-5. Set environment variables
-6. Deploy
+5. Configure:
+   ```
+   Root Directory: backend
+   Build Command: Leave empty (uses Dockerfile)
+   Start Command: Leave empty (uses Dockerfile)
+   ```
+6. Add Environment Variables:
+   ```
+   DATABASE_URL=postgresql://user:pass@host:5432/db
+   REDIS_URL=redis://user:pass@host:port
+   SECRET_KEY=your-key
+   ```
+7. Deploy
 
 ### Deploy Frontend to Vercel
 
 1. Push code to GitHub
 2. Go to https://vercel.com
 3. Import project
-4. Set environment variables
-5. Deploy
+4. Configure:
+   ```
+   Root Directory: frontend
+   ```
+5. Add Environment Variables:
+   ```
+   REACT_APP_API_URL=https://your-backend.onrender.com
+   ```
+6. Deploy
 
-### Database & Cache on Render
+### Update CORS
 
-1. Create PostgreSQL service on Render
-2. Create Redis service on Render
-3. Copy connection strings to backend `.env`
+After deployment, update backend CORS in `app/main.py`:
+
+```python
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "https://your-vercel-app.vercel.app",
+        "https://your-backend.onrender.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+```
 
 ---
 
 ## 🧪 Testing
 
-### Run Backend Tests
+### Local Testing
 
 ```bash
+# Run backend tests
 cd backend
-pytest tests/
+python -m pytest
+
+# Run specific test
+python -m pytest tests/test_matching.py -v
+
+# With coverage
+python -m pytest --cov=app
 ```
 
-### Test API Endpoints
+### API Testing
 
 ```bash
 # Health check
 curl http://localhost:8000/health
 
-# API documentation
-open http://localhost:8000/docs
-```
+# Create job (requires auth)
+curl -X POST http://localhost:8000/api/jobs \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Senior Developer", "description": "5+ years", "required_skills": ["python", "django"]}'
 
-### Test ML Model
-
-```bash
-cd backend
-python app/ml/training/test_model.py
+# Match resume
+curl -X POST http://localhost:8000/api/matching/match \
+  -F "resume_file=@resume.pdf" \
+  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ---
 
-## 📊 Model Performance
+## 📚 Database Schema
 
-- **Accuracy:** ~85%
-- **Precision:** ~82%
-- **Recall:** ~88%
-- **F1-Score:** ~85%
+### Users
+```sql
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL,
+  full_name VARCHAR(255),
+  role VARCHAR(50),  -- 'job_seeker', 'employer', 'admin'
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-Trained on 15+ sample resume-job pairs. Improve by adding more training data.
+### Resumes
+```sql
+CREATE TABLE resumes (
+  id UUID PRIMARY KEY,
+  user_id UUID REFERENCES users(id),
+  file_name VARCHAR(255),
+  raw_text TEXT,
+  extracted_skills TEXT[],
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### Jobs
+```sql
+CREATE TABLE jobs (
+  id UUID PRIMARY KEY,
+  employer_id UUID REFERENCES users(id),
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  required_skills TEXT[],
+  experience_required INTEGER,
+  status VARCHAR(50),  -- 'active', 'closed'
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### Analyses
+```sql
+CREATE TABLE analyses (
+  id UUID PRIMARY KEY,
+  resume_id UUID REFERENCES resumes(id),
+  job_id UUID REFERENCES jobs(id),
+  match_score FLOAT,
+  matching_skills TEXT[],
+  missing_skills TEXT[],
+  summary TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+## 🛠️ Development Guide
+
+### Add New Endpoint
+
+1. Create route file in `backend/app/api/routes/`
+2. Define Pydantic schema in `backend/app/schemas/`
+3. Implement service in `backend/app/services/`
+4. Import router in `backend/app/api/__init__.py`
+5. Add route to `app.main`
+
+### Add New ML Feature
+
+1. Add extraction logic to `backend/app/preprocessing/skill_extractor.py`
+2. Update feature preparation in `backend/app/ml/models/resume_matcher_model.py`
+3. Retrain model: `python app/ml/training/train.py`
+4. Test predictions
+
+### Update Frontend
+
+1. Modify components in `frontend/src/components/`
+2. Update API calls in `frontend/src/services/api.js`
+3. Test locally: `npm start`
+4. Push to GitHub → Auto-deploy on Vercel
+
+---
+
+## 📦 Dependencies
+
+### Backend
+- fastapi==0.104.1
+- uvicorn==0.24.0
+- sqlalchemy==2.0.23
+- psycopg2-binary==2.9.9
+- redis==5.0.1
+- scikit-learn==1.3.2
+- pandas==2.0.3
+- numpy==1.24.3
+
+### Frontend
+- react==18.2.0
+- axios==1.6.0
+- react-router-dom==6.0.0
+- tailwindcss==3.0.0
+
+---
+
+## 🔐 Security Best Practices
+
+- ✅ Use `.env` for secrets (never commit)
+- ✅ Enable HTTPS in production
+- ✅ Validate & sanitize all inputs
+- ✅ Use JWT for authentication
+- ✅ Rate limit API endpoints
+- ✅ Keep dependencies updated
+- ✅ Use strong SECRET_KEY in production
+- ✅ Enable CORS for specific origins only
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Docker Issues
+### Backend Won't Start
 
 ```bash
-# Rebuild containers
-docker-compose down -v
-docker-compose build --no-cache
-docker-compose up -d
+# Check database connection
+docker-compose logs postgres
 
-# View logs
-docker-compose logs -f backend
-docker-compose logs -f frontend
-docker-compose logs -f postgres
+# Check Redis connection
+docker-compose logs redis
+
+# View backend errors
+docker-compose logs backend -f
+
+# Restart services
+docker-compose restart
+```
+
+### Frontend Can't Reach Backend
+
+```bash
+# Check API URL in .env
+cat frontend/.env
+
+# Test backend is running
+curl http://localhost:8000/
+
+# Check CORS settings in app/main.py
 ```
 
 ### Database Connection Error
 
 ```bash
-# Check if PostgreSQL is running
-docker-compose ps
+# Check PostgreSQL is running
+docker-compose ps postgres
 
-# Restart PostgreSQL
-docker-compose restart postgres
-
-# Verify connection
-docker-compose exec backend python -c "from app.core.database import engine; engine.connect()"
-```
-
-### Frontend Can't Reach Backend
-
-- Check `.env.local` has correct API URL
-- Verify backend is running: `curl http://localhost:8000/health`
-- Check CORS settings in `app/main.py`
-
-### Model Not Found
-
-```bash
-# Train model
-cd backend
-python app/ml/training/train.py
-
-# Verify model exists
-ls -la models/resume_matcher_rf.pkl
+# Check credentials in docker-compose.yml
+# Recreate database
+docker-compose down -v
+docker-compose up -d postgres
 ```
 
 ---
 
-## 📚 API Endpoints
+## 📞 Support & Contact
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Root endpoint |
-| GET | `/health` | Health check |
-| GET | `/docs` | Swagger API docs |
-| POST | `/api/matching/match` | Match resume to job |
-| POST | `/api/matching/match-batch` | Match multiple resumes |
-| GET | `/api/matching/top-jobs/{resume_id}` | Find best jobs |
-| GET | `/api/matching/top-resumes/{job_id}` | Find best resumes |
+- **Issues**: Open GitHub issue
+- **Discussions**: GitHub discussions
+- **Email**: contact@example.com
 
 ---
 
-## 🤝 Contributing
+## 📄 License
 
-1. Fork repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+MIT License - See LICENSE file
 
 ---
 
-## 📝 License
+## 🎉 Getting Started Checklist
 
-MIT License - see LICENSE file for details
-
----
-
-## 👤 Author
-
-**Rishabh** - AI/ML Developer
-- GitHub: [@codewithrishabh09](https://github.com/codewithrishabh09)
-
----
-
-## 🙏 Acknowledgments
-
-- FastAPI for the excellent web framework
-- scikit-learn for ML capabilities
-- React for frontend framework
-- PostgreSQL & Redis for databases
+- [ ] Clone repository
+- [ ] Create `.env` files
+- [ ] Run `docker-compose up -d`
+- [ ] Test API at `http://localhost:8000/health`
+- [ ] Open frontend at `http://localhost:3000`
+- [ ] Train ML model (optional)
+- [ ] Test resume matching
+- [ ] Deploy to production
 
 ---
 
-## 📞 Support
+## 📈 Roadmap
 
-For issues and questions:
-1. Check troubleshooting section above
-2. Open GitHub issue
-3. Review API documentation at `/docs`
-
----
-
-## 🎯 Roadmap
-
-- [ ] Advanced ML models (BERT embeddings)
-- [ ] Deep learning with TensorFlow
-- [ ] Continuous model retraining
-- [ ] Advanced skill recommendations
-- [ ] Job market analysis
-- [ ] Resume optimization suggestions
-- [ ] Mobile app (React Native)
-- [ ] GraphQL API
+- [ ] Advanced filtering & sorting
+- [ ] Email notifications
+- [ ] Resume templates
+- [ ] Job recommendations via email
+- [ ] Analytics dashboard
+- [ ] Multi-language support
+- [ ] Mobile app
+- [ ] BERT embeddings for better matching
+- [ ] Real-time notifications
 
 ---
 
-**Last Updated:** September 2026
-**Version:** 2.0
-**Status:** Production Ready ✅
+**Happy Matching! 🚀**
+
+Built with ❤️ by Rishabh
