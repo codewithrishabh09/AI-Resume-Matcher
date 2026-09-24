@@ -14,7 +14,7 @@ import os
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from ml.resume_matcher_model import ResumeMatcher
+from app.ml.models.resume_matcher_model import ResumeMatcher
 from data.training_data import get_training_data, prepare_training_data
 
 

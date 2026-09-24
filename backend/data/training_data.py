@@ -387,7 +387,7 @@ def prepare_training_data():
     Returns:
         X_train (features), y_train (labels)
     """
-    from ml.resume_matcher_model import ResumeMatcher
+    from app.ml.models.resume_matcher_model import ResumeMatcher
     import numpy as np
     
     # Get training samples
