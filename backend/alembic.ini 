@@ -2,8 +2,7 @@
 script_location = alembic
 prepend_sys_path = .
 
-sqlalchemy.url = postgresql://resumeadmin:admin123@localhost:5432/resumematcher
-
+sqlalchemy.url = postgresql://resumeai_user:yourpassword@localhost:5432/resumeai
 [loggers]
 keys = root,sqlalchemy,alembic
 
