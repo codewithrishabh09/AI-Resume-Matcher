@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-"""
-Complete training pipeline script
-Train the Resume Matcher ML model.
-This script prepares data and trains the model on resume-job pairs.
-"""
-
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
