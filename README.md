@@ -1,5 +1,6 @@
+# 🤖 ResumeAI
 
-# 🤖 ResumeAI — AI-Powered Resume & Job Matching Platform
+# 🚀 AI-Powered Resume & Job Matching Platform
 
 ![ResumeAI Banner](https://img.shields.io/badge/ResumeAI-v1.0.0-violet?style=for-the-badge)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688?style=for-the-badge&logo=fastapi)
