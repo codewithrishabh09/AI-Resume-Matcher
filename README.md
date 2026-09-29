@@ -53,6 +53,16 @@ The platform processes a resume, extracts relevant information, compares it agai
 
 ---
 
+## 👥 Two Main User Roles
+
+### 🙋 Job Seekers
+
+Upload resumes, discover relevant jobs, analyze compatibility, and track applications.
+
+## 🏢 Employers
+
+Create job listings, evaluate candidate matches, and manage applications.
+
 ## ✨ Features
 
 ### For Job Seekers
