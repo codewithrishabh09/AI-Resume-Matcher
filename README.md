@@ -37,9 +37,11 @@
 
 ---
 
-## 🎯 Overview
+## ✨ Overview
 
-ResumeAI is a full-stack AI-powered platform that matches job seekers with employers using Machine Learning. Upload your resume and instantly get a match score for any job, along with skill gap analysis and learning recommendations.
+ResumeAI helps connect job seekers and employers using Machine Learning.
+
+The platform processes a resume, extracts relevant information, compares it against job requirements, and produces a compatibility score.
 
 ### Key Highlights
 
