@@ -76,12 +76,14 @@ Create job listings, evaluate candidate matches, and manage applications.
 - 📨 Apply to jobs
 - 📱 Track submitted applications
 
-### For Employers
+### 🏢 For Employers
 
-- 💼 Post job listings with required skills
-- 🏆 View top matching resumes ranked by ML score
-- 👥 Manage applications with status updates
-- 📈 See skill overlap between candidates and requirements
+- 💼 Create job listings
+- 🧩 Define required skills
+- 🏆 View ML-ranked candidate matches
+- 👥 Manage applications
+- 📊 Analyze candidate/job skill overlap
+- 🔄 Update application statuses
 
 ### Platform
 
