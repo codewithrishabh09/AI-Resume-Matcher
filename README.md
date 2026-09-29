@@ -16,17 +16,24 @@
 
 ---
 
-## 📋 Table of Contents
+## 📌 Table of Contents
 
-<!-- - [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Architecture](#architecture)
-- [Getting Started](#getting-started)
-- [API Documentation](#api-documentation)
-- [ML Pipeline](#ml-pipeline)
-- [Deployment](#deployment)
-- [Project Structure](#project-structure) -->
+✨ Overview
+🔥 Core Capabilities
+🏗️ System Architecture
+🛠️ Technology Stack
+🧠 ML Pipeline
+🚀 Getting Started
+⚙️ Environment Variables
+📡 API Reference
+🐳 Docker
+☁️ Deployment
+📁 Project Structure
+🔐 Security & Reliability
+🔄 Development Workflow
+🤝 Contributing
+📄 License
+👨‍💻 Author
 
 ---
 
