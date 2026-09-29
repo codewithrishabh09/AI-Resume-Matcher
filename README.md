@@ -85,13 +85,18 @@ Create job listings, evaluate candidate matches, and manage applications.
 - 📊 Analyze candidate/job skill overlap
 - 🔄 Update application statuses
 
-### Platform
+### ⚡ Platform Capabilities
 
-- 🔐 JWT authentication with role-based access
-- ⚡ Redis caching for fast responses
-- 🛡️ Rate limiting to prevent abuse
-- 🤖 Background job processing with Celery
-- 📊 RESTful API with Swagger documentation
+- 🔐 JWT authentication
+- 👤 Role-based access control
+- 🗄️ PostgreSQL persistence
+- ⚡ Redis caching
+- 🔄 Celery background processing
+- 🛡️ API rate limiting
+- 📡 RESTful API
+- 📚 Swagger/OpenAPI documentation
+- 🐳 Docker support
+- ☁️ Render deployment
 
 ---
 
