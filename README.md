@@ -63,16 +63,18 @@ Upload resumes, discover relevant jobs, analyze compatibility, and track applica
 
 Create job listings, evaluate candidate matches, and manage applications.
 
-## ✨ Features
+## 🔥 Core Capabilities
 
-### For Job Seekers
+### 🙋 For Job Seekers
 
-- 📄 Upload resume (PDF/DOCX) with automatic text extraction
-- 🎯 Get AI-powered match score (0-100%) for any job
-- 🔍 Browse all active job listings with search
-- 📊 Detailed skill gap analysis with learning resources
-- ✅ One-click job application
-- 📱 Track all applications in one place
+- 📄 Upload resumes in PDF/DOCX format
+- 🤖 Generate AI-powered 0–100% match scores
+- 🔍 Browse active job listings
+- 🔎 Search available jobs
+- 📊 Analyze skill gaps
+- 💡 Get learning recommendations
+- 📨 Apply to jobs
+- 📱 Track submitted applications
 
 ### For Employers
 
