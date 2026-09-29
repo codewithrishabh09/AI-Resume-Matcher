@@ -333,22 +333,6 @@ docker-compose up --build
 # - Celery Worker: background
 ```
 
----
-
-## ☁️ Deployment
-
-Deployed on **Render.com**:
-
-| Service | Type | URL |
-
-|---------|------|-----|
-| Backend | Web Service | <https://resumeai-backend.onrender.com> |
-| Frontend | Static Site | <https://resumeai-frontend.onrender.com> |
-| Database | PostgreSQL | Internal |
-| Cache | Redis | Internal |
-
----
-
 ## 📁 Project Structure
 
 ai-resume-matcher/
@@ -388,24 +372,6 @@ ai-resume-matcher/
 ├── .gitignore
 └── README.md
 
----
-
-## 🔒 Environment Variables
-
-| Variable | Description | Required |
-
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | ✅ |
-| `SECRET_KEY` | JWT secret key | ✅ |
-| `REDIS_URL` | Redis connection string | ✅ |
-| `DEBUG` | Debug mode (True/False) | ✅ |
-| `ALGORITHM` | JWT algorithm (HS256) | ✅ |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | Token expiry | ✅ |
-| `UPLOAD_DIR` | File upload directory | ✅ |
-| `MAX_FILE_SIZE_MB` | Max upload size | ✅ |
-
----
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -433,3 +399,24 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Built with ❤️ using FastAPI + React + Machine Learning**
 
 ⭐ Star this repo if you found it helpful!
+
+## 📈 Future Improvements
+
+The project is designed to evolve into a more advanced AI recruitment platform.
+
+Planned improvements include:
+
+🔹 LLM-powered resume analysis
+🔹 RAG-based job recommendations
+🔹 Candidate ranking system
+🔹 Personalized resume improvement suggestions
+🔹 AI-generated interview questions
+🔹 Resume ATS optimization
+🔹 Job recommendation engine
+🔹 Candidate skill visualization
+🔹 Advanced semantic search
+🔹 Background processing with Celery
+🔹 Kafka-based event processing
+🔹 Kubernetes deployment
+🔹 CI/CD pipeline
+🔹 Automated testing with PyTest
