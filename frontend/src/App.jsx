@@ -18,6 +18,7 @@ import EmployerDashboard from './pages/employer/Dashboard'
 import PostJob from './pages/employer/PostJob'
 import JobApplications from './pages/employer/JobApplications'
 import ResumeMatch from './pages/employer/ResumeMatch'
+import MyApplications from './pages/seeker/MyApplications'
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute'
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="jobs" element={<JobList />} />
         <Route path="jobs/:jobId" element={<JobDetail />} />
         <Route path="match/:resumeId/:jobId" element={<MatchResult />} />
+        <Route path="applications" element={<MyApplications />} />
       </Route>
 
       {/* Employer routes */}
