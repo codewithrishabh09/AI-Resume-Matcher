@@ -171,12 +171,12 @@ Create job listings, evaluate candidate matches, and manage applications.
 
 ## 🔄 Request Flow
 
-👤 User │
+- 👤 User │
         ▼
-🖥️ React Frontend
+- 🖥️ React Frontend
         │
         ▼
-⚡ FastAPI
+- ⚡ FastAPI
     │
     ├── 🔐 Authentication
     ├── ✅ Request Validation
@@ -185,13 +185,13 @@ Create job listings, evaluate candidate matches, and manage applications.
     └── 🔄 Celery
             │
             ▼
-            🧠 ML Job
+-           🧠 ML Job
             │
-            ▼
+-           ▼
             🎯 Match Prediction
             │
             ▼
-            📡 API Response
+-          📡 API Response
 
 ## 🚀 Getting Started
 
