@@ -173,10 +173,14 @@ Create job listings, evaluate candidate matches, and manage applications.
 
 ### Prerequisites
 
-- Python 3.10+
-- Node.js 18+
-- PostgreSQL 15+
-- Redis 7+
+Install the following before running the project:
+
+- 🐍 Python 3.10+
+- 🟢 Node.js 18+
+- 🐘 PostgreSQL 15+
+- ⚡ Redis 7+
+- 🐙 Git
+- 🐳 Docker (optional)
 
 ### 1. Clone the repository
 
@@ -192,17 +196,17 @@ cd backend
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
+Activate environment — Linux/macOS
+# source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Download ML models
+# Download NLTK resources
 python -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
 ```
 
-### 4. Setup Database
+### 4. 🗄️ Database Setup
 
 ```bash
 # Create database
