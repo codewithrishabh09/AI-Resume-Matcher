@@ -104,16 +104,16 @@ Create job listings, evaluate candidate matches, and manage applications.
 
 ### ⚡ Backend
 
-Technology	Version	Purpose
-🐍 Python	3.10+	Backend runtime
-⚡ FastAPI	0.109.0	REST API framework
-🐘 PostgreSQL	15.x	Primary database
-🗃️ SQLAlchemy	2.0.25	ORM
-🔄 Alembic	1.13.1	Database migrations
-⚡ Redis	7.x	Cache + message broker
-🔄 Celery	5.3.6	Background tasks
-🔐 JWT	3.3.0	Authentication
-🛡️ SlowAPI	0.1.9	Rate limiting
+| Technology | Version | Purpose |
+| ------------ | --------- | --------- |
+| FastAPI | 0.109.0 | REST API framework |
+| PostgreSQL | 15.x | Primary database |
+| Redis | 7.x | Caching + message broker |
+| Celery | 5.3.6 | Background task queue |
+| SQLAlchemy | 2.0.25 | ORM |
+| Alembic | 1.13.1 | Database migrations |
+| JWT | 3.3.0 | Authentication |
+| SlowAPI | 0.1.9 | Rate limiting |
 
 ### Machine Learning
 
