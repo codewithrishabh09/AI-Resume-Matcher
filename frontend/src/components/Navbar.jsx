@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LogOut, User, LayoutDashboard, Upload, Search, PlusCircle } from 'lucide-react'
+import { LogOut, User, LayoutDashboard, Upload, Search, PlusCircle, FileText } from 'lucide-react'
 import useAuthStore from '../store/authStore'
 import Logo from './Logo'
 
@@ -10,10 +10,11 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path
 
   const seekerLinks = [
-    { to: '/seeker', label: 'Dashboard', icon: LayoutDashboard },
-    { to: '/seeker/jobs', label: 'Browse Jobs', icon: Search },
-    { to: '/seeker/upload', label: 'Upload Resume', icon: Upload },
-  ]
+  { to: '/seeker', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/seeker/jobs', label: 'Browse Jobs', icon: Search },
+  { to: '/seeker/upload', label: 'Upload Resume', icon: Upload },
+  { to: '/seeker/applications', label: 'My Applications', icon: FileText },
+ ]
 
   const employerLinks = [
     { to: '/employer', label: 'Dashboard', icon: LayoutDashboard },
