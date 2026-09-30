@@ -169,30 +169,6 @@ Create job listings, evaluate candidate matches, and manage applications.
 
 ---
 
-## 🔄 Request Flow
-
-- 👤 User │
--         ▼
-- 🖥️ React Frontend
--        │
--        ▼
-- ⚡ FastAPI
-- │
-- ├── 🔐 Authentication
-- ├── ✅ Request Validation
-- ├── 🗄️ PostgreSQL
-- ├── ⚡ Redis
-- └── 🔄 Celery
--           │
--           ▼
--          🧠 ML Job
--            │
--            ▼
--          🎯 Match Prediction
--            │
--            ▼
--          📡 API Response
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -339,6 +315,8 @@ GET /applications/job/{id} Job applications (employer)
 PATCH /applications/{id}/status Update status
 
 ### 🧠 ML Pipeline
+
+ResumeAI transforms an uploaded resume into a job compatibility score through multiple processing stages.
 
 PDF/DOCX Upload
 ↓
