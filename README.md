@@ -172,25 +172,25 @@ Create job listings, evaluate candidate matches, and manage applications.
 ## 🔄 Request Flow
 
 - 👤 User │
-        ▼
+-         ▼
 - 🖥️ React Frontend
-        │
-        ▼
+-        │
+-        ▼
 - ⚡ FastAPI
-    │
-    ├── 🔐 Authentication
-    ├── ✅ Request Validation
-    ├── 🗄️ PostgreSQL
-    ├── ⚡ Redis
-    └── 🔄 Celery
-            │
-            ▼
--           🧠 ML Job
-            │
+- │
+- ├── 🔐 Authentication
+- ├── ✅ Request Validation
+- ├── 🗄️ PostgreSQL
+- ├── ⚡ Redis
+- └── 🔄 Celery
+-           │
 -           ▼
-            🎯 Match Prediction
-            │
-            ▼
+-          🧠 ML Job
+-            │
+-            ▼
+-          🎯 Match Prediction
+-            │
+-            ▼
 -          📡 API Response
 
 ## 🚀 Getting Started
