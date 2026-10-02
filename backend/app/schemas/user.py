@@ -1,11 +1,12 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
+from app.models.user import UserRole
 
 class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
     password: str
-    role: str = "seeker"
+    role: UserRole = UserRole.seeker
 
 class UserUpdate(BaseModel):
     full_name: str | None = None

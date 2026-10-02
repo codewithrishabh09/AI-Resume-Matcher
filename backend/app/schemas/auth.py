@@ -1,10 +1,11 @@
 from pydantic import BaseModel, EmailStr
+from app.models.user import UserRole
 
 class RegisterRequest(BaseModel):
     full_name: str
     email: EmailStr
     password: str
-    role: str = "seeker"  # seeker | employer
+    role: UserRole = UserRole.seeker
 
 class LoginRequest(BaseModel):
     email: EmailStr
